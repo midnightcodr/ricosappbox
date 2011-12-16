@@ -1,0 +1,34 @@
+{% extends "../base.html" %}
+{% block extra %}
+<script type="text/javascript">
+(function() {
+	if(!window['Foo']) window['Foo']={};
+	var self=window['Foo'];
+	var name=null;
+	var description=null;
+
+	function init(options) {
+		name=options.name||'no name';	
+		description=options.description||'default description';
+		return self;
+	}
+
+	function bark() {
+		alert( 'Hi my name is '+name+' and I do ' +description+'.' );
+	}
+
+	window['Foo']['init']=init;
+	window['Foo']['bark']=bark;
+})();
+function say_it() {
+	var 	thename=document.getElementById('id-name').value,
+		thedesc=document.getElementById('id-desc').value;
+	Foo.init({ name:thename, description:thedesc }).bark();
+}
+</script>
+{% endblock %}
+{% block body %}
+<p><input id="id-name" value="the one and only"></input></p>
+<p><input id="id-desc" value="a lot of things"></input></p>
+<a href="#" onclick="say_it();">Say It</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+application: ricosappbox
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /demos/.*
+  script: demos.py
+
+- url: /.*
+  script: not_found.py

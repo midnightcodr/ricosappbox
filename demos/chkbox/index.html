@@ -1,0 +1,27 @@
+{% extends "../base.html" %}
+{% block extra %}
+<script type="text/javascript">
+	function doit() {
+		var p=[];
+		$('input.cb').each( function() {
+			if($(this).attr('checked')) {
+				p.push($(this).attr('rel'));
+			}
+		} );
+		$.ajax( {
+			url:'/demos/chkbox',
+			type:'POST',
+			data: {list:p},
+			success: function(res) {
+				alert(res);
+			}
+		});
+	}
+</script>
+{% endblock %}
+{% block body %}
+	<input type="checkbox" class="cb" rel="1"></input>This is 1<br />
+	<input type="checkbox" class="cb" rel="abc"></input>This is abc<br />
+	<input type="checkbox" class="cb" rel="999"></input>This is 999<br />
+	<a href="javascript:void(0)" onclick="doit()">Click</a>
+{% endblock %}`
