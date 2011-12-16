@@ -6,6 +6,7 @@
 	var self=window['Foo'];
 	var name=null;
 	var description=null;
+	var income=-999;
 
 	function init(options) {
 		name=options.name||'no name';	
@@ -15,20 +16,35 @@
 
 	function bark() {
 		alert( 'Hi my name is '+name+' and I do ' +description+'.' );
+		return self;
+	}
+
+	function showincome() {
+		alert( "Shhhh don't tell anybody that my income is "+income+'.' );
+		return self;
 	}
 
 	window['Foo']['init']=init;
 	window['Foo']['bark']=bark;
+	window['Foo']['showincome']=showincome;
 })();
 function say_it() {
 	var 	thename=document.getElementById('id-name').value,
 		thedesc=document.getElementById('id-desc').value;
-	Foo.init({ name:thename, description:thedesc }).bark();
+	return Foo.init({ name:thename, description:thedesc }).bark();
+}
+function say_it_more() {
+	say_it().showincome();
+}
+function start_over() {
+	Foo.init({}).bark().showincome();
 }
 </script>
 {% endblock %}
 {% block body %}
 <p><input id="id-name" value="the one and only"></input></p>
 <p><input id="id-desc" value="a lot of things"></input></p>
-<a href="#" onclick="say_it();">Say It</a>
+<p><a href="#" onclick="say_it();">Say It</a></p>
+<p><a href="#" onclick="say_it_more();">Say It More</a></p>
+<p><a href="#" onclick="start_over();">Start Over</a></p>
 {% endblock %}
