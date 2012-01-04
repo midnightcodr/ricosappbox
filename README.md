@@ -1,4 +1,4 @@
-** About
+### About
 Some demos that I wrote for examples on my blog http://ricochen.wordpress.com, using GAE
 (google app engine). Really simple stuff.
 
